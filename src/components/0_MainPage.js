@@ -1,18 +1,19 @@
 import React from 'react'
+import '../styles/MainPage.css'
 
 const MainPage = () => {
     return(
         <div className='container'>
-            <header>
+            <header className='header'>
                 <span>image1</span>
                 <span>image2</span>
                 <span>image3</span>
             </header>
-            <main>
-    
+            <main className='main'>
+                <span>main</span>
             </main>
-            <footer>
-    
+            <footer className='header'>
+                <span>The Odin Project jeldrint</span>
             </footer>
         </div>
   
