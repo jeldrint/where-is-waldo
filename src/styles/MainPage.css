@@ -1,5 +1,4 @@
 .container {
-    height: 100vh;
     display: grid;
     grid-template-rows: 6em 1fr 2em;
 }
@@ -10,4 +9,12 @@
 
 .footer{
     background-color: aqua;
+}
+
+.main{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
 }

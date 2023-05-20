@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/MainPage.css'
+import LoadImage from './01_LoadImage'
 
 const MainPage = () => {
     return(
@@ -10,7 +11,7 @@ const MainPage = () => {
                 <span>image3</span>
             </header>
             <main className='main'>
-                <span>main</span>
+                <LoadImage />
             </main>
             <footer className='header'>
                 <span>The Odin Project jeldrint</span>
