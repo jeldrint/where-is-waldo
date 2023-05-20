@@ -4,8 +4,8 @@ import dataWriting from '../firebase'
 
 const LoadImage = () => {
     const pictureClicked = (e) => {
-        //dataWriting();
         dataWriting(e.pageX,e.pageY);
+        console.log(e.clientX, e.clientY)
     }
 
     return (

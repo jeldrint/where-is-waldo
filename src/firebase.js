@@ -19,17 +19,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const sampleDataWriting = async () => {
-    await addDoc(collection(db, 'data types'), {
-        name: "Tohoku",
-        country: "Japan"
-    },{merge: true});
-
-}
-
-
-
-
 const dataWriting = async (x,y) => {
     await setDoc(doc(db,'coordinates','target'),{
         xCoordinate: x,
@@ -38,4 +27,12 @@ const dataWriting = async (x,y) => {
 
 }
 
-export default sampleDataWriting
+/* const sampleDataWriting = async () => {
+    await addDoc(collection(db, 'data types'), {
+        name: "Tohoku",
+        country: "Japan"
+    },{merge: true});
+
+} */
+
+export default dataWriting
