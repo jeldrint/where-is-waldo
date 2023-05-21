@@ -1,34 +1,30 @@
-import {db} from '../firebase'
-import { collection, doc, setDoc, getDoc, addDoc } from "firebase/firestore";
+import {db} from '../firebase.js'
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 
-const DataWriting = async (x,y) => {
+const DataWriting = async () => {
 
     await setDoc(doc(db, 'coordinates', 'coordinates'), {
         picture1: [
             {
-                x1: 661,
-                x2: 716,
-                y1: 360,
-                y2: 410
+                x1: 629,
+                x2: 805,
+                y1: 217,
+                y2: 285
             },
             {
-                x1: 716,
-                x2: 718,
-                y1: 360,
-                y2: 391
+                x1: 637,
+                x2: 812,
+                y1: 230,
+                y2: 262
+
             },
             {
-                x1: 718,
-                x2: 725,
-                y1: 360,
-                y2: 386
-            },
-            {
-                x1: 659,
-                x2: 825,
-                y1: 349,
-                y2: 360
+                x1: 614,
+                x2: 679,
+                y1: 255,
+                y2: 325
+
             },
         ]
 

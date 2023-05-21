@@ -1,5 +1,6 @@
 .dimension-tracker{
     background-color: yellow;
     opacity: 0.8;
-    position: absolute;
+    position:absolute;
+    z-index: -1;
 }

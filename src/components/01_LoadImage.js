@@ -1,21 +1,34 @@
 import React from 'react'
 import '../styles/LoadImage.css'
 import Easy1 from '../images/easy-1.webp'
-import DataWriting from './02_DataWriting'
+import {db} from '../firebase'
+import { doc, getDoc } from "firebase/firestore";
 
-const LoadImage = () => {
-    const pictureClicked = (e) => {
-        DataWriting(e.pageX,e.pageY);
-        
+const LoadImage = ({xCoor, yCoor}) => {
+    const picture1Clicked = async (e) => {
+        const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
+        let arr = []
+
+        if (getCoordinates.exists()){
+            arr = getCoordinates.data().picture1
+        }else{
+            console.log('no documents found',)
+        }
+        for(let i=0; i<arr.length; i++){
+            if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
+                console.log(xCoor,yCoor,arr[i])
+                console.log('You won! Press any to proceed to the next level!')
+                break;
+            }
+        }
+
+
+
     }
 
     return (
         <>
-            <img className='easy-1-img' src={Easy1} onClick={pictureClicked} style={{cursor: 'pointer'}}/>
-            <div className='dimension-tracker' style={{top: '360px', left: '661px', height: '50px', width: '55px'}}></div>
-            <div className='dimension-tracker' style={{top: '360px', left: '716px', height: '31px', width: '2px'}}></div>
-            <div className='dimension-tracker' style={{top: '360px', left: '718px', height: '26px', width: '7px'}}></div>
-            <div className='dimension-tracker' style={{top: '349px', left: '659px', height: '11px', width: '166px'}}></div>
+            <img className='easy-1-img' src={Easy1} onClick={picture1Clicked} style={{cursor: 'pointer'}}/>
         </>
     )
 }
