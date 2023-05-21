@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/MainPage.css'
 import {Routes, Route} from 'react-router-dom'
-import DataWriting from './02_DataWriting'
+import DataWriting from './01_DataWriting'
 import Level1 from './Level1'
 import Level2 from './Level2'
 
@@ -18,8 +18,8 @@ const MainPage = () => {
     },[])
 
     const getCoordinates = (e) =>{
-        setXCoor(e.offsetX);
-        setYCoor(e.offsetY);
+        setXCoor(e.screenX);
+        setYCoor(e.screenY);
     }
 
     return(
