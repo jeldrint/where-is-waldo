@@ -1,9 +1,5 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from 'firebase/firestore'
-import { doc, setDoc } from "firebase/firestore";
-
-//SAMPLE IMPORTS
-import { collection, addDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,22 +13,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const dataWriting = async (x,y) => {
-    await setDoc(doc(db,'coordinates','target'),{
-        xCoordinate: x,
-        yCoordinate: y
-    }, {merge: true});    
-
-}
-
-/* const sampleDataWriting = async () => {
-    await addDoc(collection(db, 'data types'), {
-        name: "Tohoku",
-        country: "Japan"
-    },{merge: true});
-
-} */
-
-export default dataWriting
+export const db = getFirestore(app);
