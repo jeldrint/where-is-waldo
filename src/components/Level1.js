@@ -3,11 +3,15 @@ import Easy1 from '../images/easy-1.webp'
 import {db} from '../firebase'
 import { doc, getDoc } from "firebase/firestore";
 
-const Level1 = ({xCoor, yCoor, level, setLevel}) => {
+const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 
-    const pictureClicked = async (e) => {
-        const prompt = document.querySelector('.prompt-header')    
-        const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
+const Level1 = ({xCoor, yCoor, level, setLevel, setText}) => {
+
+    useEffect(()=>{
+        setText('Level 1: Can you find the wolf among the sheep?');
+    },[])
+
+    const pictureClicked = (e) => {
         let arr = []
 
         if (getCoordinates.exists()){
@@ -17,14 +21,14 @@ const Level1 = ({xCoor, yCoor, level, setLevel}) => {
         }
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
-                prompt.textContent = 'You won! Easy, right? Click anywhere to proceed to the next level!';
+                setText('You won! Easy, right? Click anywhere on the picture to proceed to the next level!');
                 setLevel(2);
                 break;
             }
         }
 
         if (level === 2) {
-            window.location.href = '/2';
+            window.location.href = `/${level}`;
         }
 
 
@@ -32,7 +36,7 @@ const Level1 = ({xCoor, yCoor, level, setLevel}) => {
 
     return (
         <>
-            <img className='easy-1-img' src={Easy1} onClick={pictureClicked} style={{cursor: 'pointer'}}/>
+            <img className='easy-1-img' src={Easy1} onClick={pictureClicked} style={{cursor: 'pointer', width: '838px', height: '838px'}}/>
         </>
     )
 }

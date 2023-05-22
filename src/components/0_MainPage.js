@@ -4,11 +4,15 @@ import {Routes, Route} from 'react-router-dom'
 import DataWriting from './01_DataWriting'
 import Level1 from './Level1'
 import Level2 from './Level2'
+import Level3 from './Level3'
+import Level4 from './Level4'
+import Level5 from './Level5'
 
 const MainPage = () => {
     const [xCoor, setXCoor] = useState(0);
     const [yCoor, setYCoor] = useState(0);
     const [level, setLevel] = useState(1);
+    const [text, setText] = useState('');
 
     useEffect(()=> {
         DataWriting(); //writing coordinate to the Firestore
@@ -18,19 +22,22 @@ const MainPage = () => {
     },[])
 
     const getCoordinates = (e) =>{
-        setXCoor(e.screenX);
-        setYCoor(e.screenY);
+        setXCoor(e.offsetX);
+        setYCoor(e.offsetY);
     }
 
     return(
         <div className='container' style={{backgroundColor: 'rgb(33,33,33)'}}>
             <header className='header'>
-                <h1 className='prompt-header'>Level 1: Can you find the wolf among the sheep?</h1>
+                <h1 className='prompt-header'>{text}</h1>
             </header>
             <main className='main'>
                 <Routes>
-                    <Route path='/' element={<Level1 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel}/>} />
-                    <Route path='/2' element={<Level2 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel}/>} />
+                    <Route path='/' element={<Level1 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText}/>} />
+                    <Route path='/2' element={<Level2 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText}/>} />
+                    <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText}/>} />
+                    <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText}/>} />
+                    <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText}/>} />
                 </Routes>
 
             </main>

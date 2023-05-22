@@ -1,32 +1,33 @@
-import React, { useEffect } from 'react'
-import Easy2 from '../images/easy-2.webp'
+import React, {useEffect} from 'react'
+import Hard4 from '../images/hard-4.jpeg'
 import {db} from '../firebase'
 import { doc, getDoc } from "firebase/firestore";
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 
-const Level2 = ({xCoor, yCoor, level, setLevel, setText}) => {
+const Level4 = ({xCoor, yCoor, level, setLevel, setText}) => {
 
     useEffect(()=>{
-        setText('Can you locate the heart?');
+        setText('Can you spot the hidden bunny? I bet you can!');
     },[])
 
     const pictureClicked = async (e) => {
+        const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
         let arr = []
 
         if (getCoordinates.exists()){
-            arr = getCoordinates.data().picture2
+            arr = getCoordinates.data().picture4
         }else{
             console.log('no documents found',)
         }
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
-                setText('No sweat, isn\'t it? Now click on the picture to proceed to the next level!');
-                setLevel(3);
+                setText('Wheew. How is it? Now for the last picture. Click to proceed!');
+                setLevel(5);
                 break;
             }
         }
-        if (level === 3) {
+        if (level === 5) {
             window.location.href = `/${level}`;
         }
 
@@ -34,9 +35,9 @@ const Level2 = ({xCoor, yCoor, level, setLevel, setText}) => {
 
     return (
         <>
-            <img className='easy-2-img' src={Easy2} onClick={pictureClicked} style={{cursor: 'pointer', width: '838px', height: '838px'}}/>
+            <img className='hard-4-img' src={Hard4} onClick={pictureClicked} style={{cursor: 'pointer', width: '838px', height: '838px'}}/>
         </>
     )
 }
 
-export default Level2
+export default Level4
