@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
 import Easy1 from '../images/easy-1.webp'
 import {db} from '../firebase'
-import { doc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 
-const Level1 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
+const Level1 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, setTimer}) => {
 
     useEffect(()=>{
         setText('Level 1: Can you find the wolf among the sheep?');
         setTextColor('aliceblue')
+
+        let intervalId = setInterval(() => setTimer(prev => prev + 1),1000);
+        return () => clearInterval(intervalId);
     },[])
 
-    const pictureClicked = () => {
+    const pictureClicked = async () => {
         let arr = []
 
         if (getCoordinates.exists()){
@@ -30,6 +33,7 @@ const Level1 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
         }
 
         if (level === 2) {
+            await setDoc(doc(db, 'coordinates', 'time'),{time: timer}) 
             window.location.href = `/${level}`;
         }
 

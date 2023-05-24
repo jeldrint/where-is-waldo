@@ -1,18 +1,23 @@
 import React, {useEffect} from 'react'
 import Hard5 from '../images/hard-5.jpg'
 import {db} from '../firebase'
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
+const time = await getDoc(doc(db,'coordinates','time'));
 
-const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
+const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, setTimer}) => {
 
     useEffect(()=>{
         setText('The final stage! Can you find the pencil amongst these books?');
         setTextColor('aliceblue')
+        setTimer(time.data().time)
+
+        let intervalId = setInterval(() => setTimer(prev => prev + 1),1000);
+        return () => clearInterval(intervalId);
     },[])
 
-    const pictureClicked = () => {
+    const pictureClicked = async () => {
         let arr = []
 
         if (getCoordinates.exists()){
@@ -29,6 +34,7 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
             }
         }
         if (level === 6) {
+            await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
             window.location.href = `/`;
         }
 

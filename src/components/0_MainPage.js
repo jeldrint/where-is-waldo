@@ -9,12 +9,12 @@ import Level4 from './Level4'
 import Level5 from './Level5'
 
 const MainPage = () => {
+    const [timer, setTimer] = useState(0);
     const [xCoor, setXCoor] = useState(0);
     const [yCoor, setYCoor] = useState(0);
     const [level, setLevel] = useState(1);
     const [text, setText] = useState('');
     const [textColor, setTextColor] = useState('aliceblue');
-    const [timer, setTimer] = useState(0)
 
     useEffect(()=> {
         DataWriting(); //writing coordinate to the Firestore
@@ -24,13 +24,6 @@ const MainPage = () => {
             document.removeEventListener('mousemove',getCoordinates);
         }
     },[])
-
-    useEffect(()=>{
-        let intervalId = setInterval(() => setTimer(prev => prev + 1),1000);
-
-        return () => clearInterval(intervalId);
-
-    },[timer])
 
     const getCoordinates = (e) =>{
         setXCoor(e.offsetX);
@@ -55,13 +48,12 @@ const MainPage = () => {
             </header>
             <main className='main'>
                 <Routes>
-                    <Route path='/' element={<Level1 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor}/>} />
-                    <Route path='/2' element={<Level2 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor}/>} />
-                    <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor}/>} />
-                    <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor}/>} />
-                    <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor}/>} />
+                    <Route path='/' element={<Level1 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
+                    <Route path='/2' element={<Level2 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
+                    <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
+                    <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
+                    <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
                 </Routes>
-
             </main>
             <footer className='header'>
                 <span>The Odin Project jeldrint</span>
