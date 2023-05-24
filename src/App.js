@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import MainPage from './components/0_MainPage';
-import React, {useState} from 'react';
+import React from 'react';
 
 const App = () => {
 

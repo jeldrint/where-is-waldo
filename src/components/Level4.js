@@ -25,19 +25,26 @@ const Level4 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         }else{
             console.log('no documents found',)
         }
+
+        if (level === 5) {
+            await setDoc(doc(db, 'coordinates', 'time'),{time: timer+2})
+            window.location.href = `/${level}`;
+        }
+
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
                 setText('Wheew. How is it? Now for the last picture. Click to proceed!');
                 setTextColor('yellow')
                 setLevel(5);
                 break;
+            }else{
+                if(level !== 5){
+                    setText('Wrong answer! 15 seconds added to your time! Please try again.');
+                    setTextColor('crimson')
+                    setTimer(prev => prev + 15);    
+                }
             }
         }
-        if (level === 5) {
-            await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
-            window.location.href = `/${level}`;
-        }
-
     }
 
     return (

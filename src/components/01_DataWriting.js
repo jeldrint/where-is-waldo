@@ -1,5 +1,5 @@
 import {db} from '../firebase.js'
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 
 const DataWriting = async () => {

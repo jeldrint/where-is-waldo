@@ -14,6 +14,8 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         setTimer(time.data().time)
 
         let intervalId = setInterval(() => setTimer(prev => prev + 1),1000);
+
+        
         return () => clearInterval(intervalId);
     },[])
 
@@ -25,17 +27,24 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         }else{
             console.log('no documents found',)
         }
+
+        if (level === 6) {
+            window.location.href = `/`;
+        }
+
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
                 setText('Congratulations! You\'ve completed the game! Tally your score.');
                 setTextColor('yellow')
                 setLevel(6);
                 break;
+            }else{
+                if(level !== 6){
+                    setText('Wrong answer! 15 seconds added to your time! Please try again.');
+                    setTextColor('crimson')
+                    setTimer(prev => prev + 5);    
+                }
             }
-        }
-        if (level === 6) {
-            await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
-            window.location.href = `/`;
         }
 
     }
