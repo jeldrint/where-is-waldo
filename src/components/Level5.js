@@ -5,10 +5,11 @@ import { doc, getDoc } from "firebase/firestore";
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 
-const Level5 = ({xCoor, yCoor, level, setLevel, setText}) => {
+const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
 
     useEffect(()=>{
         setText('The final stage! Can you find the pencil amongst these books?');
+        setTextColor('aliceblue')
     },[])
 
     const pictureClicked = async (e) => {
@@ -23,6 +24,7 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText}) => {
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
                 setText('Congratulations! You\'ve completed the game! Tally your score.');
+                setTextColor('yellow')
                 setLevel(6);
                 break;
             }

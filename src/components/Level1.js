@@ -5,10 +5,11 @@ import { doc, getDoc } from "firebase/firestore";
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 
-const Level1 = ({xCoor, yCoor, level, setLevel, setText}) => {
+const Level1 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
 
     useEffect(()=>{
         setText('Level 1: Can you find the wolf among the sheep?');
+        setTextColor('aliceblue')
     },[])
 
     const pictureClicked = (e) => {
@@ -21,7 +22,8 @@ const Level1 = ({xCoor, yCoor, level, setLevel, setText}) => {
         }
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
-                setText('You won! Easy, right? Click anywhere on the picture to proceed to the next level!');
+                setText('That\'s easy. right? Click anywhere on the picture to proceed to the next level!');
+                setTextColor('yellow')
                 setLevel(2);
                 break;
             }

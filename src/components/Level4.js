@@ -5,10 +5,11 @@ import { doc, getDoc } from "firebase/firestore";
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 
-const Level4 = ({xCoor, yCoor, level, setLevel, setText}) => {
+const Level4 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
 
     useEffect(()=>{
         setText('Can you spot the hidden bunny? I bet you can!');
+        setTextColor('aliceblue')
     },[])
 
     const pictureClicked = async (e) => {
@@ -23,6 +24,7 @@ const Level4 = ({xCoor, yCoor, level, setLevel, setText}) => {
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
                 setText('Wheew. How is it? Now for the last picture. Click to proceed!');
+                setTextColor('yellow')
                 setLevel(5);
                 break;
             }

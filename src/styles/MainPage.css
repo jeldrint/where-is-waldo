@@ -6,12 +6,9 @@
 }
 
 .header{
-    background-color: aqua;
+    background-color: rgb(33, 33, 33);
     text-align: center;
-}
-
-.footer{
-    background-color: aqua;
+    color: aliceblue;
 }
 
 .main{
