@@ -37,9 +37,9 @@ const MainPage = () => {
         setYCoor(e.offsetY);
     }
 
-    const hrs = Math.floor(timer /3600) % 60;
-    const mins = Math.floor(timer /60) % 60;
-    const secs = Math.floor(timer) % 60;
+    const hrs = Math.floor(timer / 360000);
+    const mins = Math.floor((timer % 360000)/6000);
+    const secs = Math.floor(timer);
 
 
     return(

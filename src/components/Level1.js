@@ -12,7 +12,7 @@ const Level1 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
         setTextColor('aliceblue')
     },[])
 
-    const pictureClicked = (e) => {
+    const pictureClicked = () => {
         let arr = []
 
         if (getCoordinates.exists()){

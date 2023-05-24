@@ -12,8 +12,7 @@ const Level3 = ({xCoor, yCoor, level, setLevel, setText, setTextColor}) => {
         setTextColor('aliceblue')
     },[])
 
-    const pictureClicked = async (e) => {
-        const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
+    const pictureClicked = () => {
         let arr = []
 
         if (getCoordinates.exists()){
