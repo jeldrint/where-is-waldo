@@ -36,7 +36,7 @@ const MainPage = () => {
 
 
     return(
-        <div className='container'>
+        <div className='container' style={{backgroundColor: 'rgb(33,33,33)'}}>
             <header className='header'>
                 <h1 className='prompt-header'style={{color: textColor}}>{text}</h1>
                 <div>
@@ -56,7 +56,7 @@ const MainPage = () => {
                 </Routes>
             </main>
             <footer className='header'>
-                <span>The Odin Project jeldrint</span>
+                <span>2023 {String.fromCharCode(169)} jeldrint</span>
                 <span> Coordinates: X: {xCoor}, Y: {yCoor}</span>
             </footer>
         </div>

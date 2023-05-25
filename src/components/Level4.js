@@ -14,7 +14,14 @@ const Level4 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         setTimer(time.data().time)
 
         let intervalId = setInterval(() => setTimer(prev => prev + 1),1000);
-        return () => clearInterval(intervalId);
+
+        return () => {
+            clearInterval(intervalId);
+            setText('');
+            setTextColor('');
+            setTimer(0);
+        }
+
     },[])
 
     const pictureClicked = async () => {
@@ -31,20 +38,23 @@ const Level4 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
             window.location.href = `/${level}`;
         }
 
+        let wrongFlag = true;
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
                 setText('Wheew. How is it? Now for the last picture. Click to proceed!');
                 setTextColor('yellow')
                 setLevel(5);
+                wrongFlag = false;
                 break;
-            }else{
-                if(level !== 5){
-                    setText('Wrong answer! 15 seconds added to your time! Please try again.');
-                    setTextColor('crimson')
-                    setTimer(prev => prev + 15);    
-                }
             }
         }
+
+        if(wrongFlag && level !== 5){
+            setText('Wrong answer! 30 seconds added to your time! Please try again.');
+            setTextColor('crimson')
+            setTimer(prev => prev + 30);
+        }
+        await setDoc(doc(db, 'coordinates', 'time'),{time: timer+2})
     }
 
     return (
