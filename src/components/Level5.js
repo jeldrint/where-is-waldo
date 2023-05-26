@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Hard5 from '../images/hard-5.jpg'
 import {db} from '../firebase'
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import HighScore from './HighScore';
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 const time = await getDoc(doc(db,'coordinates','time'));
@@ -45,10 +46,11 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         let wrongFlag = true;
         for(let i=0; i<arr.length; i++){
             if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
-                setText('Congratulations! You\'ve completed the game! Tally your score.');
+                setText('Congratulations! You\'ve completed the game! Tallying your score.');
                 setTextColor('yellow')
                 setLevel(6);
                 setStopTimer(true);
+                HighScore(timer);
                 wrongFlag = false;
                 break;
             }
@@ -57,8 +59,8 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
             setText('Wrong answer! 30 seconds added to your time! Please try again.');
             setTextColor('crimson')
             setTimer(prev => prev + 30);
+            await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
         }
-        await setDoc(doc(db, 'coordinates', 'time'),{time: timer+2})
     }
 
     return (

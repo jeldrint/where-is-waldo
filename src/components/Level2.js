@@ -34,7 +34,7 @@ const Level2 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         }
 
         if (level === 3) {
-            await setDoc(doc(db, 'coordinates', 'time'),{time: timer+2}) 
+            await setDoc(doc(db, 'coordinates', 'time'),{time: timer+1.5}) 
             window.location.href = `/${level}`;
         }
 
@@ -53,7 +53,7 @@ const Level2 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
             setTextColor('crimson')
             setTimer(prev => prev + 30);
         }
-        await setDoc(doc(db, 'coordinates', 'time'),{time: timer+2})
+        await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
     }
 
     return (
