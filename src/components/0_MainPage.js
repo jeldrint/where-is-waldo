@@ -7,6 +7,7 @@ import Level2 from './Level2'
 import Level3 from './Level3'
 import Level4 from './Level4'
 import Level5 from './Level5'
+import HighScore from './HighScore'
 
 const MainPage = () => {
     const [timer, setTimer] = useState(0);
@@ -53,6 +54,7 @@ const MainPage = () => {
                     <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
                     <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
                     <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
+                    <Route path='/high-score' element={<HighScore />} />
                 </Routes>
             </main>
             <footer className='header'>

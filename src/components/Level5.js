@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Hard5 from '../images/hard-5.jpg'
 import {db} from '../firebase'
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import HighScore from './HighScore';
+import setScore from './02_setScore';
 
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 const time = await getDoc(doc(db,'coordinates','time'));
@@ -31,16 +31,21 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         return () => clearInterval(intervalId);
     },[stopTimer])
 
+    useEffect(()=>{
+        let loadHighScore;
+
+        if (level === 6) {
+            loadHighScore = setInterval(() => window.location.href = `/high-score` ,3000);
+        }
+        return () => clearInterval(loadHighScore);
+    },[level])
+
     const pictureClicked = async () => {
         let arr = []
         if (getCoordinates.exists()){
             arr = getCoordinates.data().picture5
         }else{
             console.log('no documents found',)
-        }
-
-        if (level === 6) {
-            window.location.href = `/`;
         }
 
         let wrongFlag = true;
@@ -50,7 +55,7 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
                 setTextColor('yellow')
                 setLevel(6);
                 setStopTimer(true);
-                HighScore(timer);
+                setScore(timer);
                 wrongFlag = false;
                 break;
             }

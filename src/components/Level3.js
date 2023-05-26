@@ -33,7 +33,6 @@ const Level3 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         }
 
         if (level === 4) {
-            await setDoc(doc(db, 'coordinates', 'time'),{time: timer+1.5})
             window.location.href = `/${level}`;
         }
 
