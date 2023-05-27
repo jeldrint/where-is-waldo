@@ -1,0 +1,8 @@
+.high-score-body{
+    width: 40em;
+}
+
+.high-score-body > *{
+    display: flex;
+    justify-content: space-between;
+}

@@ -40,12 +40,10 @@ const MainPage = () => {
         <div className='container' style={{backgroundColor: 'rgb(33,33,33)'}}>
             <header className='header'>
                 <h1 className='prompt-header'style={{color: textColor}}>{text}</h1>
-                <div>
-                    <h1 className='stopwatch'>
-                        {hrs}:{mins.toString().padStart(2,'0')}:
-                        {secs.toString().padStart(2,'0')}
-                    </h1>
-                </div>
+                <h1 className='stopwatch'>
+                    {hrs}:{mins.toString().padStart(2,'0')}:
+                    {secs.toString().padStart(2,'0')}
+                </h1>
             </header>
             <main className='main'>
                 <Routes>
@@ -54,7 +52,7 @@ const MainPage = () => {
                     <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
                     <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
                     <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
-                    <Route path='/high-score' element={<HighScore />} />
+                    <Route path='/high-score' element={<HighScore setText={setText}/>} />
                 </Routes>
             </main>
             <footer className='header'>
