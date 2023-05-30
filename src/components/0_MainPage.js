@@ -47,17 +47,17 @@ const MainPage = () => {
             </header>
             <main className='main'>
                 <Routes>
-                    <Route path='/' element={<Level1 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
-                    <Route path='/2' element={<Level2 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
-                    <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
-                    <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
-                    <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
+                    <Route path='/' element={<Level1 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} textColor={textColor} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
+                    <Route path='/2' element={<Level2 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} textColor={textColor} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
+                    <Route path='/3' element={<Level3 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} textColor={textColor} setTextColor={setTextColor} timer={timer} setTimer={setTimer} />} />
+                    <Route path='/4' element={<Level4 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} textColor={textColor} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
+                    <Route path='/5' element={<Level5 xCoor={xCoor} yCoor={yCoor} level={level} setLevel={setLevel} setText={setText} textColor={textColor} setTextColor={setTextColor} timer={timer} setTimer={setTimer}/>} />
                     <Route path='/high-score' element={<HighScore setText={setText}/>} />
                 </Routes>
             </main>
             <footer className='header'>
                 <span>2023 {String.fromCharCode(169)} jeldrint</span>
-                <span> Coordinates: X: {xCoor}, Y: {yCoor}</span>
+                <span className='coordinates'> Coordinates: X: {xCoor}, Y: {yCoor}</span>
             </footer>
         </div>
   

@@ -7,20 +7,44 @@ import setScore from './02_setScore';
 const getCoordinates = await getDoc(doc(db,'coordinates','coordinates'));
 const time = await getDoc(doc(db,'coordinates','time'));
 
-const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, setTimer}) => {
+const Level5 = ({xCoor, yCoor, level, setLevel, setText, textColor, setTextColor, timer, setTimer}) => {
+    const [isWrong, setIsWrong] = useState('');
     const [stopTimer, setStopTimer] = useState(false)
+
+    useEffect(()=>{
+        setTimer(time.data().time)
+
+        return () => setTimer(0);
+    },[])
 
     useEffect(()=>{
         setText('The final stage! Can you find the pencil amongst these books?');
         setTextColor('aliceblue')
-        setTimer(time.data().time)
+
+        let intervalId;
+        if(isWrong){
+            setText('Wrong answer! 30 seconds added to your time! Please try again.')
+            setTextColor('crimson')
+            setTimer(prev => prev + 30);
+            intervalId = setInterval(() => {
+                setIsWrong('');
+            },5000);
+        }
+        if (isWrong === false){
+            setText('Congratulations! You\'ve completed the game! Tallying your score.');
+            setTextColor('yellow')
+            setLevel(6);
+            setStopTimer(true);
+            setScore(timer);
+        }
 
         return () => {
+            clearInterval(intervalId);
             setText('');
             setTextColor('');
-            setTimer(0);
         }
-    },[])
+    },[isWrong])
+
 
     useEffect(()=>{
         let intervalId;
@@ -40,32 +64,27 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, setTextColor, timer, se
         return () => clearInterval(loadHighScore);
     },[level])
 
+
     const pictureClicked = async () => {
         let arr = []
+
         if (getCoordinates.exists()){
             arr = getCoordinates.data().picture5
         }else{
             console.log('no documents found',)
         }
 
-        let wrongFlag = true;
         for(let i=0; i<arr.length; i++){
-            if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
-                setText('Congratulations! You\'ve completed the game! Tallying your score.');
-                setTextColor('yellow')
-                setLevel(6);
-                setStopTimer(true);
-                setScore(timer);
-                wrongFlag = false;
+            if (textColor === 'yellow') {
+                window.location.href = `/${level}`;
+            }else if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
+                setIsWrong(false);
                 break;
+            }else if(arr.length - i === 1){
+                setIsWrong(true);
             }
         }
-        if(wrongFlag && level !== 6){
-            setText('Wrong answer! 30 seconds added to your time! Please try again.');
-            setTextColor('crimson')
-            setTimer(prev => prev + 30);
-            await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
-        }
+        await setDoc(doc(db, 'coordinates', 'time'),{time: timer})
     }
 
     return (

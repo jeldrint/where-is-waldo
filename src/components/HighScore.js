@@ -10,6 +10,8 @@ const querySnap = await getDocs(q);
 const HighScore = ({setText}) => {
     useEffect(()=>{
         const stopwatch = document.querySelector('.stopwatch')
+        const coordinates = document.querySelector('.coordinates')
+        coordinates.style.display = 'none';
         stopwatch.style.display = 'none';
         setText('Thank you for playing!')
     },[])
