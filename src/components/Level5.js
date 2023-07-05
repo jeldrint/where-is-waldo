@@ -59,7 +59,7 @@ const Level5 = ({xCoor, yCoor, level, setLevel, setText, textColor, setTextColor
         let loadHighScore;
 
         if (level === 6) {
-            loadHighScore = setInterval(() => window.location.href = `/high-score` ,3000);
+            loadHighScore = setInterval(() => window.location.href = `/#/high-score` ,3000);
         }
         return () => clearInterval(loadHighScore);
     },[level])
