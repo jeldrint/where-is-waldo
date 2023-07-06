@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/where-is-waldo/static/css/main.9d67c809.css",
-    "main.js": "/where-is-waldo/static/js/main.f2786dfb.js",
+    "main.js": "/where-is-waldo/static/js/main.bb11dc35.js",
     "static/js/787.9220c6c0.chunk.js": "/where-is-waldo/static/js/787.9220c6c0.chunk.js",
     "static/media/easy-2.webp": "/where-is-waldo/static/media/easy-2.8ba861160d6d29966ce0.webp",
     "static/media/easy-1.webp": "/where-is-waldo/static/media/easy-1.24f95c282a0faaa4e25e.webp",
@@ -10,11 +10,11 @@
     "static/media/hard-4.jpeg": "/where-is-waldo/static/media/hard-4.532dc0babebe52deee36.jpeg",
     "index.html": "/where-is-waldo/index.html",
     "main.9d67c809.css.map": "/where-is-waldo/static/css/main.9d67c809.css.map",
-    "main.f2786dfb.js.map": "/where-is-waldo/static/js/main.f2786dfb.js.map",
+    "main.bb11dc35.js.map": "/where-is-waldo/static/js/main.bb11dc35.js.map",
     "787.9220c6c0.chunk.js.map": "/where-is-waldo/static/js/787.9220c6c0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9d67c809.css",
-    "static/js/main.f2786dfb.js"
+    "static/js/main.bb11dc35.js"
   ]
 }
