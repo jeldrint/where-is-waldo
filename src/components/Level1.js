@@ -51,7 +51,7 @@ const Level1 = ({xCoor, yCoor, level, setLevel, setText, textColor, setTextColor
 
         for(let i=0; i<arr.length; i++){
             if (level === 2) {
-                window.location.href = `/#/level-${level}`;
+                window.location.href = `/where-is-waldo/#/level-${level}`;
             }else if(xCoor >= arr[i].x1 && xCoor <= arr[i].x2 && yCoor >= arr[i].y1 && yCoor <= arr[i].y2){
                 setIsWrong(false);
                 break;
